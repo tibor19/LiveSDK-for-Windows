@@ -1,0 +1,12 @@
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\bin\Debug\LiveConnectDesktopSample.exe.config
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\bin\Debug\LiveConnectDesktopSample.exe
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\bin\Debug\LiveConnectDesktopSample.pdb
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\bin\Debug\Microsoft.Live.dll
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\bin\Debug\Microsoft.Live.pdb
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\obj\Debug\Microsoft.Live.Desktop.Samples.ApiExplorer.csprojResolveAssemblyReference.cache
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\obj\Debug\Microsoft.Live.Desktop.Samples.ApiExplorer.LiveAuthForm.resources
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\obj\Debug\Microsoft.Live.Desktop.Samples.ApiExplorer.MainForm.resources
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\obj\Debug\LiveConnectDesktopSample.Properties.Resources.resources
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\obj\Debug\Microsoft.Live.Desktop.Samples.ApiExplorer.csproj.GenerateResource.Cache
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\obj\Debug\LiveConnectDesktopSample.exe
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Samples\ApiExplorer\obj\Debug\LiveConnectDesktopSample.pdb

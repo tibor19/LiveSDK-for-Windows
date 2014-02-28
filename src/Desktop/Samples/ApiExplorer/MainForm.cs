@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveConnectDesktopSample;
 using Microsoft.Live;
 
 using System.Runtime.InteropServices;
@@ -19,7 +20,7 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
     public partial class MainForm : Form, IRefreshTokenHandler
     {
         // Update the ClientID with your app client Id that you created from https://account.live.com/developers/applications.
-        private const string ClientID = "%YourAppClientId%";
+        private const string ClientID = @"0000000044007CD5";
         private LiveAuthForm authForm;
         private LiveAuthClient liveAuthClient;
         private LiveConnectClient liveConnectClient;
@@ -332,6 +333,23 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
             {
                 return this.refreshTokenInfo;
             });
+        }
+
+        private async void oneDriveButton_Click(object sender, EventArgs e)
+        {
+            var userId = "D0396257098C3B52";
+            var client = new LiveConnectClient(AuthSession);
+            var oClient = new OneDriveClient(client, userId);
+
+
+
+            var result = await oClient.GetFileId(this.pathTextBox.Text);
+            //var sb = new StringBuilder();
+            //foreach (var pair in result.Result)
+            //{
+            //    sb.AppendLine(pair.Key + " : " + pair.Value);
+            //}
+            MessageBox.Show(result);
         }
     }
 }

@@ -49,6 +49,7 @@
             this.connectGroupBox = new System.Windows.Forms.GroupBox();
             this.clearOutputButton = new System.Windows.Forms.Button();
             this.outputTextBox = new System.Windows.Forms.TextBox();
+            this.oneDriveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.connectGroupBox.SuspendLayout();
@@ -291,11 +292,22 @@
             this.outputTextBox.Size = new System.Drawing.Size(570, 209);
             this.outputTextBox.TabIndex = 4;
             // 
+            // oneDriveButton
+            // 
+            this.oneDriveButton.Location = new System.Drawing.Point(583, 22);
+            this.oneDriveButton.Name = "oneDriveButton";
+            this.oneDriveButton.Size = new System.Drawing.Size(75, 23);
+            this.oneDriveButton.TabIndex = 19;
+            this.oneDriveButton.Text = "One Drive Test";
+            this.oneDriveButton.UseVisualStyleBackColor = true;
+            this.oneDriveButton.Click += new System.EventHandler(this.oneDriveButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 555);
+            this.Controls.Add(this.oneDriveButton);
             this.Controls.Add(this.connectGroupBox);
             this.Controls.Add(this.signOutButton);
             this.Controls.Add(this.groupBox1);
@@ -337,6 +349,7 @@
         private System.Windows.Forms.TextBox outputTextBox;
         private System.Windows.Forms.Button clearOutputButton;
         private System.Windows.Forms.TextBox currentScopeTextBox;
+        private System.Windows.Forms.Button oneDriveButton;
     }
 }
 

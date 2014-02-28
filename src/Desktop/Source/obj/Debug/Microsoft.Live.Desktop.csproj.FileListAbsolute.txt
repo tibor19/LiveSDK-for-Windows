@@ -1,0 +1,8 @@
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Source\bin\Debug\Microsoft.Live.dll
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Source\bin\Debug\Microsoft.Live.pdb
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Source\obj\Debug\Microsoft.Live.Desktop.csprojResolveAssemblyReference.cache
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Source\obj\Debug\Microsoft.Live.Internal.Utilities.ErrorText.resources
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Source\obj\Debug\Microsoft.Live.Internal.Resources.resources
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Source\obj\Debug\Microsoft.Live.Desktop.csproj.GenerateResource.Cache
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Source\obj\Debug\Microsoft.Live.dll
+C:\Projects\LiveSDK-for-Windows\src\Desktop\Source\obj\Debug\Microsoft.Live.pdb

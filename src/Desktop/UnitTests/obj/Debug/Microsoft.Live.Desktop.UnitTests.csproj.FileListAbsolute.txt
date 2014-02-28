@@ -1,0 +1,7 @@
+C:\Projects\LiveSDK-for-Windows\src\Desktop\UnitTests\bin\Debug\Microsoft.Live.Desktop.UnitTests.dll
+C:\Projects\LiveSDK-for-Windows\src\Desktop\UnitTests\bin\Debug\Microsoft.Live.Desktop.UnitTests.pdb
+C:\Projects\LiveSDK-for-Windows\src\Desktop\UnitTests\bin\Debug\Microsoft.Live.dll
+C:\Projects\LiveSDK-for-Windows\src\Desktop\UnitTests\bin\Debug\Microsoft.Live.pdb
+C:\Projects\LiveSDK-for-Windows\src\Desktop\UnitTests\obj\Debug\Microsoft.Live.Desktop.UnitTests.csprojResolveAssemblyReference.cache
+C:\Projects\LiveSDK-for-Windows\src\Desktop\UnitTests\obj\Debug\Microsoft.Live.Desktop.UnitTests.dll
+C:\Projects\LiveSDK-for-Windows\src\Desktop\UnitTests\obj\Debug\Microsoft.Live.Desktop.UnitTests.pdb
