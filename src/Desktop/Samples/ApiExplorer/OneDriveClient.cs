@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,22 +25,44 @@ namespace LiveConnectDesktopSample
             this._ownerId = ownerId;
         }
 
+        public async Task MoveFile(string sourceFile, string destinationFolder)
+        {
+            var fileId = await GetFileId(sourceFile);
+            var destinationFolderId = await GetFolderId(destinationFolder);
+            var result = await _lcClient.MoveAsync(fileId, destinationFolderId);
+            if(result.Result.ContainsKey("error"))
+            {
+                throw new FileNotFoundException((string)result.Result["error"]);
+            }
+        }
+
         public async Task<string> GetFileId(string absolutePath)
         {
-            var filePath = Path.GetFileName(absolutePath);
-            var folderPath = Path.GetDirectoryName(absolutePath);
+            string folderPath = absolutePath;
+
+            bool isFolder = absolutePath.EndsWith(Path.DirectorySeparatorChar.ToString(CultureInfo.InvariantCulture)) 
+                            || absolutePath.EndsWith(Path.AltDirectorySeparatorChar.ToString(CultureInfo.InvariantCulture));
+
+            if (!isFolder)
+            {
+                folderPath = Path.GetDirectoryName(absolutePath);
+            }
 
             var folderId = await GetFolderId(folderPath);
-            if (!string.IsNullOrEmpty(folderId))
+
+            if (!string.IsNullOrEmpty(folderId) && !isFolder)
             {
-                return await GetResourceId(folderId, filePath, resourceTypeFile);
+                var filePath = Path.GetFileName(absolutePath);
+
+                folderId = await GetResourceId(folderId, filePath, resourceTypeFile);
             }
-            return string.Empty;
+
+            return folderId;
         }
 
         public async Task<string> GetFolderId(string absolutePath)
         {
-            var names = absolutePath.Split(new[] { '/', Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries);
+            var names = absolutePath.Split(new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries);
             var currentFolderId = folderPrefix + _ownerId;
             foreach (var name in names)
             {

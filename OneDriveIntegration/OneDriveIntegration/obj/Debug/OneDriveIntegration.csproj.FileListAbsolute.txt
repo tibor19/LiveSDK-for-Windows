@@ -1,0 +1,21 @@
+C:\Users\Tiberiu\AppData\Local\Temporary Projects\OneDriveIntegration\bin\Debug\OneDriveIntegration.exe.config
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\OneDriveIntegration.exe.config
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\obj\Debug\OneDriveIntegration.csprojResolveAssemblyReference.cache
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\obj\Debug\OneDriveIntegration.Form1.resources
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\obj\Debug\OneDriveIntegration.LiveAuthForm.resources
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\obj\Debug\OneDriveIntegration.Properties.Resources.resources
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\obj\Debug\OneDriveIntegration.csproj.GenerateResource.Cache
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\OneDriveIntegration.exe
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\OneDriveIntegration.pdb
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\Microsoft.Live.dll
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\Microsoft.Threading.Tasks.dll
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\Microsoft.Threading.Tasks.xml
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\obj\Debug\OneDriveIntegration.exe
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\obj\Debug\OneDriveIntegration.pdb
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\System.Net.Http.Extensions.dll
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\System.Net.Http.Primitives.dll
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\System.Net.Http.Extensions.xml
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\bin\Debug\System.Net.Http.Primitives.xml
+C:\Users\Tiberiu\Documents\Visual Studio 2013\Projects\OneDriveIntegration\OneDriveIntegration\obj\Debug\OneDriveIntegration.csproj.App.config

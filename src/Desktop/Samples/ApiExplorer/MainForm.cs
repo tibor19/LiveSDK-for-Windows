@@ -341,15 +341,13 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
             var client = new LiveConnectClient(AuthSession);
             var oClient = new OneDriveClient(client, userId);
 
-
-
-            var result = await oClient.GetFileId(this.pathTextBox.Text);
+            await oClient.MoveFile(this.pathTextBox.Text, this.destPathTextBox.Text);
             //var sb = new StringBuilder();
             //foreach (var pair in result.Result)
             //{
             //    sb.AppendLine(pair.Key + " : " + pair.Value);
             //}
-            MessageBox.Show(result);
+            // MessageBox.Show(result);
         }
     }
 }
