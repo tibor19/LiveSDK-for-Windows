@@ -6,15 +6,15 @@ namespace OneDriveIntegration
 {
     public partial class LiveAuthForm : Form
     {
-        private readonly string _startUrl;
         private static readonly string _endUrl = "https://login.live.com/oauth20_desktop.srf";
+        private static readonly string _startUrl = "https://login.live.com/oauth20_authorize.srf?client_id=0000000044007CD5&scope=wl.skydrive%20wl.skydrive_update%20wl.offline_access&response_type=code&redirect_uri=" + _endUrl;
         public string ErrorDescription { get; set; }
         public string ErrorCode { get; set; }
         public string AuthorizeCode { get; set; }
 
         public LiveAuthForm(string startUrl)
         {
-            _startUrl = startUrl;
+            //_startUrl = startUrl;
             InitializeComponent();
         }
 
