@@ -6,9 +6,6 @@ using System.Security.Authentication;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
-using Microsoft.Live;
-using Newtonsoft.Json;
-using OneDriveIntegration.JsonData;
 using OneDriveIntegration.Properties;
 
 namespace OneDriveIntegration
