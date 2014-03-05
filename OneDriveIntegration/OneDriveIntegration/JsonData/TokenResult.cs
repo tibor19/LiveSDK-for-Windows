@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace OneDriveIntegration.JsonData
 {
  
-    class TokenResult
+    public class TokenResult
     {
         [JsonProperty(PropertyName = "refresh_token")]
         public string RefreshToken { get; set; }

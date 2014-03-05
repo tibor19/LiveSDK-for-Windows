@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Live, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiveSDK.5.5\lib\net45\Microsoft.Live.dll</HintPath>
+    <Reference Include="Microsoft.Live.Web, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveSDKServer.5.5\lib\net45\Microsoft.Live.Web.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net45\Microsoft.Threading.Tasks.dll</HintPath>
@@ -56,6 +56,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net45\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,12 +67,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FakeHttpContext.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="JsonData\OwnerResult.cs" />
+    <Compile Include="JsonData\ResourceListResult.cs" />
+    <Compile Include="JsonData\ResourceResult.cs" />
     <Compile Include="JsonData\TokenResult.cs" />
     <Compile Include="LiveAuthForm.cs">
       <SubType>Form</SubType>
@@ -81,7 +86,6 @@
     </Compile>
     <Compile Include="LiveRestClient.cs" />
     <Compile Include="Settings.cs" />
-    <None Include="Fonts\LiveSymbol.ttf" />
     <Compile Include="OneDriveClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

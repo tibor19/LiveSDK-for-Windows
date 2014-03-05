@@ -26,11 +26,6 @@ namespace OneDriveIntegration
 
         private void WebBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            if (webBrowser.Url.AbsoluteUri.Equals(_startUrl))
-            {
-                return;
-            }
-
             if (webBrowser.Url.AbsoluteUri.StartsWith(_endUrl))
             {
                 string[] queryParams = webBrowser.Url.Query.TrimStart('?').Split('&');
