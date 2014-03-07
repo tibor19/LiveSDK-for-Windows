@@ -14,38 +14,37 @@ namespace OneDriveIntegration
 {
     public class LiveRestClient
     {
-        private readonly string _clientId = "0000000044007CD5";
-        private readonly string _clientSecret = "CxQOxCRbxzDOnRiSinyTcexWayWE9Q7m";
-        private readonly string _redirectUri = "https://login.live.com/oauth20_desktop.srf";
+        private const string RedirectUri = "https://login.live.com/oauth20_desktop.srf";
+        private const string AuthCodeFormatString = "https://login.live.com/oauth20_token.srf?grant_type=authorization_code&redirect_uri={0}&client_id={1}&client_secret={2}&code={3}";
+        private const string RefreshTokenFormatString = "https://login.live.com/oauth20_token.srf?grant_type=refresh_token&redirect_uri={0}&client_id={1}&client_secret={2}&refresh_token={3}";
 
-        private static readonly string authCodeFormatString =
-            "https://login.live.com/oauth20_token.srf?grant_type=authorization_code&redirect_uri={0}&client_id={1}&client_secret={2}&code={3}";
-
-        private static readonly string refreshTokenFormatString =
-            "https://login.live.com/oauth20_token.srf?grant_type=refresh_token&redirect_uri={0}&client_id={1}&client_secret={2}&refresh_token={3}";
+        private readonly string _clientId;
+        private readonly string _clientSecret;
 
         public string AccessToken { get; private set; }
         public string RefreshToken { get; private set; }
 
-        public LiveRestClient()
+        public LiveRestClient(string clientId, string clientSecret) : this(clientId, clientSecret, null)
         {
             
         }
 
-        public LiveRestClient(string refreshToken)
+        public LiveRestClient(string clientId, string clientSecret, string refreshToken)
         {
+            _clientId = clientId;
+            _clientSecret = clientSecret;
             RefreshToken = refreshToken;
         }
 
         public async Task InitAsync(string authorizationCode)
         {
-            var requestString = String.Format(authCodeFormatString, HttpUtility.UrlEncode(_redirectUri), _clientId, _clientSecret, authorizationCode);
+            var requestString = String.Format(AuthCodeFormatString, HttpUtility.UrlEncode(RedirectUri), _clientId, _clientSecret, authorizationCode);
             await GetTokenResult(requestString);
         }
 
         public async Task RefreshTokensAsync()
         {
-            var requestString = String.Format(refreshTokenFormatString, HttpUtility.UrlEncode(_redirectUri), _clientId, _clientSecret, RefreshToken);
+            var requestString = String.Format(RefreshTokenFormatString, HttpUtility.UrlEncode(RedirectUri), _clientId, _clientSecret, RefreshToken);
             await GetTokenResult(requestString);
         }
 
@@ -53,7 +52,11 @@ namespace OneDriveIntegration
         {
             var client = new HttpClient();
             var response = await client.GetAsync(requestString);
+            response.EnsureSuccessStatusCode();
+
             var data = await response.Content.ReadAsStringAsync();
+            response.Dispose();
+
             var result = JsonConvert.DeserializeObject<TokenResult>(data);
 
             AccessToken = result.AccessToken;

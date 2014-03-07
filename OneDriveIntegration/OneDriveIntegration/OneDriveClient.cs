@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -15,14 +16,14 @@ namespace OneDriveIntegration
 {
     public class OneDriveClient
     {
-        private readonly string _accessToken;
+        private readonly LiveRestClient _liveRestClient;
         private readonly string _rootFolderId;
         private const string ResourceTypeFolder = "folder";
         private const string ResourceTypeFile = "file";
 
-        public OneDriveClient(string accessToken, string ownerId)
+        public OneDriveClient(LiveRestClient liveRestClient, string ownerId)
         {
-            _accessToken = accessToken;
+            _liveRestClient = liveRestClient;
             if (string.IsNullOrEmpty(ownerId))
             {
                 _rootFolderId = "/me/skydrive";
@@ -46,6 +47,7 @@ namespace OneDriveIntegration
         public async Task<string> GetFileOrFolderIdAsync(string absolutePath)
         {
             string folderPath = absolutePath;
+
             // This definition needs refining
             bool isFolder = absolutePath.EndsWith(Path.DirectorySeparatorChar.ToString(CultureInfo.InvariantCulture))
                             || absolutePath.EndsWith(Path.AltDirectorySeparatorChar.ToString(CultureInfo.InvariantCulture));
@@ -103,17 +105,6 @@ namespace OneDriveIntegration
             return BuildFileName(result.Owner.Id, sourceFile, destinationFolder);
         }
 
-        private static async Task<ResourceResult> SendMessage(HttpRequestMessage message)
-        {
-            var httpClient = new HttpClient();
-            var response = await httpClient.SendAsync(message);
-            response.EnsureSuccessStatusCode();
-
-            var data = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<ResourceResult>(data);
-            return result;
-        }
-
         private HttpRequestMessage BuildMessage(HttpMethod method, string fileId, string destinationFolderId)
         {
             string stringUri = string.Format("https://apis.live.net/v5.0/{0}", fileId);
@@ -125,8 +116,28 @@ namespace OneDriveIntegration
                 Method = method,
                 Content = new StringContent(jsonData, Encoding.UTF8, "application/json")
             };
-            message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _accessToken);
+            message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _liveRestClient.AccessToken);
             return message;
+        }
+
+        private async Task<ResourceResult> SendMessage(HttpRequestMessage message)
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.SendAsync(message);
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                response.Dispose();
+                await _liveRestClient.RefreshTokensAsync();
+                message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _liveRestClient.AccessToken);
+                response = await httpClient.SendAsync(message);
+            }
+            response.EnsureSuccessStatusCode();
+
+            var data = await response.Content.ReadAsStringAsync();
+            response.Dispose();
+
+            var result = JsonConvert.DeserializeObject<ResourceResult>(data);
+            return result;
         }
 
         private static string BuildFileName(string ownerId, string fileName, string destinationFolder)
@@ -143,10 +154,22 @@ namespace OneDriveIntegration
         private async Task<string> GetResourceIdAsync(string parentId, string folderName, string resourceType)
         {
             var httpClient = new HttpClient();
-            var requestString = String.Format("https://apis.live.net/v5.0/{0}/files?access_token={1}", parentId, _accessToken);
+            var requestString = String.Format("https://apis.live.net/v5.0/{0}/files?access_token={1}", parentId, _liveRestClient.AccessToken);
             var response = await httpClient.GetAsync(requestString);
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                response.Dispose();
+
+                await _liveRestClient.RefreshTokensAsync();
+                requestString = String.Format("https://apis.live.net/v5.0/{0}/files?access_token={1}", parentId, _liveRestClient.AccessToken);
+                response = await httpClient.GetAsync(requestString);
+            }
+
+            response.EnsureSuccessStatusCode();
 
             var data = await response.Content.ReadAsStringAsync();
+            response.Dispose();
+
             var files = JsonConvert.DeserializeObject<ResourceListResult>(data);
             var file =
                 files.ResourceResults.SingleOrDefault(

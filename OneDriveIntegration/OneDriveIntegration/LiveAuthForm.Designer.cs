@@ -37,14 +37,14 @@
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(534, 408);
+            this.webBrowser.Size = new System.Drawing.Size(570, 468);
             this.webBrowser.TabIndex = 0;
             // 
             // LiveAuthForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 408);
+            this.ClientSize = new System.Drawing.Size(570, 468);
             this.Controls.Add(this.webBrowser);
             this.Name = "LiveAuthForm";
             this.Text = "Live Authentication";

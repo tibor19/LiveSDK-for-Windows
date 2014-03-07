@@ -19,6 +19,6 @@ namespace OneDriveIntegration.JsonData
         [JsonProperty(PropertyName = "from")]
         public OwnerResult Owner { get; set; }
         [JsonProperty(PropertyName = "link")]
-        public OwnerResult Link { get; set; }
+        public string Link { get; set; }
     }
 }

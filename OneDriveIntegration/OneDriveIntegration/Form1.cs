@@ -12,7 +12,7 @@ namespace OneDriveIntegration
 {
     public partial class Form1 : Form
     {
-        // private OneDriveClient _client;
+        private LiveRestClient _liveRestClient;
 
         public Form1()
         {
@@ -22,20 +22,17 @@ namespace OneDriveIntegration
         private async void Form1_Load(object sender, EventArgs e)
         {
             const string clientId = @"0000000044007CD5";
-            const string clientSecret = "CxQOxCRbxzDOnRiSinyTcexWayWE9Q7m";
-            const string endUrl = "https://login.live.com/oauth20_desktop.srf";
-            //const string endUrl = "https://login.live.com/oauth20_token.srf";
+            const string clientSecret = @"CxQOxCRbxzDOnRiSinyTcexWayWE9Q7m";
+
             if (string.IsNullOrEmpty(Settings.Default.RefreshToken))
             {
-
                 try
                 {
-                    var authForm = new LiveAuthForm(null);
+                    var authForm = new LiveAuthForm(clientId);
                     if (authForm.ShowDialog(this) == DialogResult.OK)
                     {
-                        var client = new LiveRestClient();
+                        var client = new LiveRestClient(clientId, clientSecret);
                         await client.InitAsync(authForm.AuthorizeCode);
-                        AccessToken = client.AccessToken;
                         Settings.Default.RefreshToken = client.RefreshToken;
                         Settings.Default.Save();
                     }
@@ -47,35 +44,31 @@ namespace OneDriveIntegration
             }
             else
             {
-                var client = new LiveRestClient(Settings.Default.RefreshToken);
-                await client.RefreshTokensAsync();
-                if (Settings.Default.RefreshToken != client.RefreshToken)
+                _liveRestClient = new LiveRestClient(clientId, clientSecret, Settings.Default.RefreshToken);
+                await _liveRestClient.RefreshTokensAsync();
+                if (Settings.Default.RefreshToken != _liveRestClient.RefreshToken)
                 {
-                    Settings.Default.RefreshToken = client.RefreshToken;
+                    Settings.Default.RefreshToken = _liveRestClient.RefreshToken;
                     Settings.Default.Save();
                 }
-                AccessToken = client.AccessToken;
             }
-
         }
-
-        public string AccessToken { get; set; }
 
         private async void btnGetId_Click(object sender, EventArgs e)
         {
-            var client = new OneDriveClient(AccessToken, null);
+            var client = new OneDriveClient(_liveRestClient, null);
             MessageBox.Show(await client.GetFileOrFolderIdAsync(txtSource.Text));
         }
 
         private async void btnCopy_Click(object sender, EventArgs e)
         {
-            var client = new OneDriveClient(AccessToken, null);
-            await client.CopyFileAsync(txtSource.Text, txtDestination.Text); //MessageBox.Show();
+            var client = new OneDriveClient(_liveRestClient, null);
+            await client.CopyFileAsync(txtSource.Text, txtDestination.Text);
         }
 
         private async void btnMove_Click(object sender, EventArgs e)
         {
-            var client = new OneDriveClient(AccessToken, null);
+            var client = new OneDriveClient(_liveRestClient, null);
             var newPath = await client.MoveFileAsync(txtSource.Text, txtDestination.Text);
             Clipboard.SetText(newPath);
             MessageBox.Show(newPath);
