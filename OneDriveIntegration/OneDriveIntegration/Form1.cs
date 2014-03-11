@@ -14,9 +14,9 @@ namespace OneDriveIntegration
     {
         private LiveRestClient _liveRestClient;
         private OneDriveClient _oneClient;
-        const string ClientId = @"0000000040116E7B";
-        const string ClientSecret = @"wywiW4hpUPk1pAaeJRE8jLXPGzG9vXax";
-        const string RootFolderId = @"folder.fb4f175a349dea2a.FB4F175A349DEA2A!107";
+        private const string ClientId = @"0000000040116E7B";
+        private const string ClientSecret = @"wywiW4hpUPk1pAaeJRE8jLXPGzG9vXax";
+        private const string RootFolderId = @"folder.fb4f175a349dea2a.FB4F175A349DEA2A!107";
 
         public Form1()
         {
@@ -79,6 +79,15 @@ namespace OneDriveIntegration
             {
                 var newPath = await _oneClient.MoveFileAsync(txtSource.Text, txtDestination.Text);
                 Clipboard.SetText(newPath);
+                MessageBox.Show(newPath);
+            }
+        }
+
+        private async void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (_oneClient != null)
+            {
+                var newPath = await _oneClient.UploadFileAsync(txtSource.Text, txtDestination.Text);
                 MessageBox.Show(newPath);
             }
         }

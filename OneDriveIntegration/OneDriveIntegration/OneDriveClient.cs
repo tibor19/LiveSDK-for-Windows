@@ -44,6 +44,28 @@ namespace OneDriveIntegration
             return await ExecuteMethodAsync(new HttpMethod("COPY"), sourceFile, destinationFolder);
         }
 
+        public async Task<string> UploadFileAsync(string localFile, string destinationFolder)
+        {
+            var destinationFolderId = await GetFolderIdAsync(destinationFolder);
+            var fileName = Path.GetFileName(localFile);
+
+            string stringUri = string.Format("https://apis.live.net/v5.0/{0}/files/{1}?access_token={2}", destinationFolderId, fileName, _liveRestClient.AccessToken );
+
+            var httpClient = new HttpClient();
+            var content = new StreamContent(new FileStream(localFile, FileMode.Open, FileAccess.Read, FileShare.Read));
+
+            // for If we want to use POST follow this link:
+            // http://msdn.microsoft.com/en-us/library/live/hh826531.aspx#uploading_files
+            //content.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data; name=\"file\"; filename=\"HelloWorld.txt@\"");
+            //content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            //var outerContent = new MultipartFormDataContent("A300x");
+            //outerContent.Add(content);
+
+            var result = await httpClient.PutAsync(stringUri, content);
+            result.EnsureSuccessStatusCode();
+            return await result.Content.ReadAsStringAsync();
+        }
+
         public async Task<string> GetFileOrFolderIdAsync(string absolutePath)
         {
             string folderPath = absolutePath;
@@ -102,7 +124,7 @@ namespace OneDriveIntegration
             var message = BuildMessage(method, fileId, destinationFolderId);
             var result = await SendMessage(message);
 
-            return BuildFileName(result.Owner.Id, sourceFile, destinationFolder);
+            return BuildFileName(result.Owner.Id, destinationFolder, sourceFile);
         }
 
         private HttpRequestMessage BuildMessage(HttpMethod method, string fileId, string destinationFolderId)
@@ -140,12 +162,12 @@ namespace OneDriveIntegration
             return result;
         }
 
-        private static string BuildFileName(string ownerId, string fileName, string destinationFolder)
+        private static string BuildFileName(string ownerId, string destinationFolder, string fileName)
         {
             if (fileName == null) throw new ArgumentNullException("fileName");
             var builder = new UriBuilder("https://d.docs.live.net")
             {
-                Path = Path.Combine(ownerId, destinationFolder, Path.GetFileName(fileName))
+                Path = Path.Combine(ownerId, "Rifm", destinationFolder, Path.GetFileName(fileName))
             };
 
             return builder.Uri.ToString();

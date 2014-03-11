@@ -33,6 +33,7 @@
             this.txtDestination = new System.Windows.Forms.TextBox();
             this.btnMove = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGetId
@@ -79,11 +80,22 @@
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
+            // btnUpload
+            // 
+            this.btnUpload.Location = new System.Drawing.Point(197, 134);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnUpload.TabIndex = 5;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnMove);
             this.Controls.Add(this.txtDestination);
@@ -104,6 +116,7 @@
         private System.Windows.Forms.TextBox txtDestination;
         private System.Windows.Forms.Button btnMove;
         private System.Windows.Forms.Button btnCopy;
+        private System.Windows.Forms.Button btnUpload;
     }
 }
 
