@@ -7,9 +7,9 @@ namespace OneDriveIntegration
 {
     public partial class LiveAuthForm : Form
     {
-        private const string RequestFormatString = "https://login.live.com/oauth20_authorize.srf?client_id={0}&scope={1}&response_type=code&redirect_uri={2}";
-        private const string EndUrl = "https://login.live.com/oauth20_desktop.srf";
-        private readonly string[] _scopes = { "wl.skydrive", "wl.skydrive_update", "wl.offline_access", "wl.signin" };
+        private const string RequestFormatString = @"https://login.live.com/oauth20_authorize.srf?client_id={0}&scope={1}&response_type=code&redirect_uri={2}";
+        private const string EndUrl = @"https://login.live.com/oauth20_desktop.srf";
+        private readonly string[] _scopes = { "wl.skydrive", "wl.skydrive_update", "wl.offline_access", "wl.basic", "wl.signin"};
 
         private readonly string _startUrl;
         public string ErrorDescription { get; set; }
@@ -18,7 +18,7 @@ namespace OneDriveIntegration
 
         public LiveAuthForm(string clientId)
         {
-            _startUrl = string.Format(RequestFormatString, clientId, HttpUtility.HtmlEncode(string.Join(" ", _scopes)), HttpUtility.UrlEncode(EndUrl));
+            _startUrl = string.Format(RequestFormatString, clientId, string.Join(" ", _scopes), HttpUtility.UrlEncode(EndUrl));
             InitializeComponent();
         }
 

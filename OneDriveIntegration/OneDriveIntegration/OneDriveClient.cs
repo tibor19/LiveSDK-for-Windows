@@ -21,16 +21,16 @@ namespace OneDriveIntegration
         private const string ResourceTypeFolder = "folder";
         private const string ResourceTypeFile = "file";
 
-        public OneDriveClient(LiveRestClient liveRestClient, string ownerId)
+        public OneDriveClient(LiveRestClient liveRestClient, string rootFolderId)
         {
             _liveRestClient = liveRestClient;
-            if (string.IsNullOrEmpty(ownerId))
+            if (string.IsNullOrEmpty(rootFolderId))
             {
                 _rootFolderId = "/me/skydrive";
             }
             else
             {
-                _rootFolderId = "folder." + ownerId;
+                _rootFolderId = rootFolderId;
             }
         }
 
