@@ -49,7 +49,7 @@ namespace OneDriveIntegration
             var destinationFolderId = await GetFolderIdAsync(destinationFolder);
             var fileName = Path.GetFileName(localFile);
 
-            string stringUri = string.Format("https://apis.live.net/v5.0/{0}/files/{1}?access_token={2}", destinationFolderId, fileName, _liveRestClient.AccessToken );
+            string stringUri = string.Format("https://apis.live.net/v5.0/{0}/files/{1}?access_token={2}", destinationFolderId, HttpUtility.UrlEncode(fileName), _liveRestClient.AccessToken );
 
             var httpClient = new HttpClient();
             var content = new StreamContent(new FileStream(localFile, FileMode.Open, FileAccess.Read, FileShare.Read));
